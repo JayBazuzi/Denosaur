@@ -1,0 +1,5 @@
+#! /bin/sh
+
+set -e
+
+./denosaur.sh run --allow-all _build_and_test.ts
