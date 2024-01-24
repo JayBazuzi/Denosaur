@@ -5,6 +5,7 @@ import {
 } from "std/assert/mod.ts";
 import * as path from "std/path/mod.ts";
 import * as strings from "https://deno.land/std@0.34.0/strings/mod.ts";
+import _DenoTempDir from "./_DenoTempDir.ts";
 
 const A_DENO_VERSION = "1.39.0";
 const A_NONEXISTENT_DENO_VERSION = "0.0.0.0";
@@ -70,21 +71,6 @@ Deno.test("version not available", async () => {
 //      deno --version
 //      works
 // });
-
-class _DenoTempDir implements AsyncDisposable {
-  path: string;
-  private constructor(path: string) {
-    this.path = path;
-  }
-
-  static async create(options?: Deno.MakeTempOptions): Promise<_DenoTempDir> {
-    return new _DenoTempDir(await Deno.makeTempDir(options));
-  }
-
-  async [Symbol.asyncDispose]() {
-    await Deno.remove(this.path, { recursive: true });
-  }
-}
 
 class _DenowTestSetup implements AsyncDisposable {
   #tempDir: _DenoTempDir;
