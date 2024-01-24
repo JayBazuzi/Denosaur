@@ -2,6 +2,9 @@
 @if not defined _ECHO echo off
 REM Copyright 2024 Jay Bazuzi. All rights reserved. MIT license.
 
+REM Edit here to use a mirror internal to your organization's network
+set "DENO_URI_BASE=https://github.com/denoland/deno/releases/download"
+
 set "DENO_VERSION_FILE=%~dp0.deno_version"
 if exist %DENO_VERSION_FILE% (
     set /p DENO_VERSION=<%DENO_VERSION_FILE%
@@ -31,7 +34,7 @@ if exist "%EXE%" exit /b 0
 
 if not exist "%BIN_DIR%" mkdir "%BIN_DIR%"
 
-set "DENO_URI=https://github.com/denoland/deno/releases/download/%DENO_VERSION%/deno-x86_64-pc-windows-msvc.zip"
+set "DENO_URI=%DENO_URI_BASE%/%DENO_VERSION%/deno-x86_64-pc-windows-msvc.zip"
 call %SystemRoot%\System32\curl.exe --fail --location --silent --output "%EXE%.zip" "%DENO_URI%"
 if ERRORLEVEL 1 (
     call :ERROR failed to download %DENO_URI%

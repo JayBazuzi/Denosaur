@@ -4,6 +4,9 @@
 
 set -e
 
+# Edit here to use a mirror internal to your organization's network
+DENO_URI_BASE="https://github.com/denoland/deno/releases/download"
+
 SCRIPT_DIR=$(CDPATH="" cd -- "$(dirname -- "$0")" && pwd)
 SCRIPT_NAME=$(basename -- "$0")
 
@@ -38,7 +41,7 @@ else
     error_and_exit ".deno_version file not found."
 fi
 
-deno_uri="https://github.com/denoland/deno/releases/download/${deno_version}/deno-${target}.zip"
+deno_uri="${DENO_URI_BASE}/${deno_version}/deno-${target}.zip"
 
 deno_install="${HOME}/.denow/deno/${deno_version}"
 bin_dir="${deno_install}/bin"
