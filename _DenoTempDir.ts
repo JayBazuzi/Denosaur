@@ -9,6 +9,6 @@ export default class _DenoTempDir implements AsyncDisposable {
   }
 
   async [Symbol.asyncDispose]() {
-    await Deno.remove(this.path, { recursive: true });
+    // await Deno.remove(this.path, { recursive: true });
   }
 }

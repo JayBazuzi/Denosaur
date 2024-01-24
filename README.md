@@ -21,11 +21,15 @@ your machine or older versions of this repo.
 
 ## Updating Deno
 
-Edit your `.deno_version` file to indicate the new version.
+```
+./denow run --allow-net --allow-write https://raw.githubusercontent.com/JayBazuzi/denow/main/update-deno.ts
+```
 
 ## Updating Denow
 
-Copy the latest `denow` / `denow.cmd` into your repository.
+```
+./denow run --allow-net --allow-write https://raw.githubusercontent.com/JayBazuzi/denow/main/update-denow.ts
+```
 
 ## Clearing the Denow cache
 
